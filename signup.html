@@ -72,9 +72,65 @@ border-radius:5px;
 <option>Agriculture</option>
 </select>
 
-<button>Create Account</button>
+</div>
+
+<div class="signup-box">
+
+<h2>Create Account</h2>
+
+<input type="text" id="username" placeholder="Username">
+
+<input type="email" id="email" placeholder="Email">
+
+<input type="password" id="password" placeholder="Password">
+
+<select id="class">
+<option value="">Select Class</option>
+<option>11th</option>
+<option>12th</option>
+</select>
+
+<select id="stream">
+<option value="">Select Stream</option>
+<option>Science</option>
+<option>Arts</option>
+<option>Agri</option>
+</select>
+
+<button onclick="signup()">Sign Up</button>
 
 </div>
 
+<script type="module">
+
+import { createUserWithEmailAndPassword } 
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+function signup(){
+
+const email = document.getElementById("email").value;
+const password = document.getElementById("password").value;
+
+createUserWithEmailAndPassword(auth, email, password)
+
+.then((userCredential) => {
+
+alert("Account Created Successfully");
+
+window.location.href = "home.html";
+
+})
+
+.catch((error) => {
+
+alert(error.message);
+
+});
+
+}
+
+</script>
+
 </body>
+
 </html>
