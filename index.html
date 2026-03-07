@@ -5,8 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Isher Education - Home</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; background-color: #f4f4f9; text-align: center; }
-        .navbar { background: #2196F3; color: white; padding: 15px; font-weight: bold; font-size: 20px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #f4f4f9; text-align: center; overflow-x: hidden; }
+        
+        /* Navbar Style */
+        .navbar { 
+            background: #2196F3; 
+            color: white; 
+            padding: 15px 20px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .menu-icon { font-size: 28px; cursor: pointer; }
+        .logo { font-size: 20px; font-weight: bold; flex-grow: 1; margin-left: 20px; text-align: left; }
+
+        /* Slide-out Menu (Sidebar) */
+        .sidebar {
+            height: 100%;
+            width: 0; /* Shuruat mein band rahega */
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            background-color: #ffffff;
+            overflow-x: hidden;
+            transition: 0.4s; /* Sliding speed */
+            padding-top: 60px;
+            box-shadow: 5px 0 15px rgba(0,0,0,0.2);
+            text-align: left;
+        }
+
+        .sidebar a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #333;
+            display: block;
+            border-bottom: 1px solid #eee;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover { background-color: #f1f1f1; color: #2196F3; }
+
+        .sidebar .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 36px;
+            cursor: pointer;
+            color: #888;
+        }
+
+        /* Overlay background when menu is open */
+        .overlay {
+            display: none;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: 999;
+        }
+
+        /* Home Page Content */
         header { background-color: #4a90e2; color: white; padding: 60px 20px; }
         .container { padding: 50px 20px; }
         .btn {
@@ -21,23 +85,37 @@
             font-size: 20px;
             font-weight: bold;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: 0.3s;
         }
+        .btn:hover { transform: scale(1.05); }
         .btn-blue { background: #2196F3; }
-        footer { margin-top: 100px; color: #777; font-size: 14px; }
+        footer { margin-top: 100px; color: #777; font-size: 14px; padding-bottom: 20px; }
     </style>
 </head>
 <body>
 
-    <div class="navbar">Isher Education</div>
+    <div id="overlay" class="overlay" onclick="closeMenu()"></div>
+
+    <div id="mySidebar" class="sidebar">
+        <span class="close-btn" onclick="closeMenu()">&times;</span>
+        <a href="index.html">🏠 Home</a>
+        <a href="study.html">📚 My Learning</a>
+        <a href="settings.html">⚙️ Setting</a>
+        <a href="about.html">ℹ️ About</a>
+    </div>
+
+    <div class="navbar">
+        <div class="menu-icon" onclick="openMenu()">☰</div>
+        <div class="logo">Isher Education</div>
+    </div>
 
     <header>
         <h1>Welcome to Study Hub 🚀</h1>
-        <p>Start your learning journey today.</p>
+        <p>Your journey to success starts here.</p>
     </header>
 
     <div class="container">
         <a href="study.html" class="btn">My Learning</a>
-        
         <a href="subjects.html" class="btn btn-blue">Explore NCERT</a>
     </div>
 
@@ -45,6 +123,23 @@
         <p>Instagram: ishwar_beniwal_ib</p>
         <p>&copy; 2025 Isher Education</p>
     </footer>
+
+    <script>
+        function openMenu() {
+            // Mobile par 70% aur desktop par 300px width rakhega
+            if(window.innerWidth < 600) {
+                document.getElementById("mySidebar").style.width = "70%";
+            } else {
+                document.getElementById("mySidebar").style.width = "300px";
+            }
+            document.getElementById("overlay").style.display = "block";
+        }
+
+        function closeMenu() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("overlay").style.display = "none";
+        }
+    </script>
 
 </body>
 </html>
