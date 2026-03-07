@@ -62,9 +62,10 @@ border-radius:5px;
 <a href="signup.html">Create Account</a>
 
 </div>
-  <script type="module">
+<script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC9a5bE57QUIKEaYECy4P2L6qRSbc68FuA",
@@ -76,6 +77,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
 </script>
 
