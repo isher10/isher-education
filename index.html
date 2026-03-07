@@ -13,11 +13,11 @@
         body.dark-mode header { background-color: #222 !important; }
         body.dark-mode .sidebar { background: #1e1e1e !important; color: white !important; }
         body.dark-mode .sidebar a { color: white !important; border-bottom: 1px solid #333 !important; }
-        body.dark-mode .container, body.dark-mode .welcome-box { background-color: #121212 !important; color: white !important; }
+        body.dark-mode .container { background-color: #121212 !important; }
         body.dark-mode footer { color: #bbb !important; }
-        body.dark-mode .founder-section { background: #1e1e1e !important; border: 1px solid #333 !important; }
-        body.dark-mode .founder-info h3 { color: white !important; }
-        body.dark-mode .founder-message { color: #ccc !important; }
+        body.dark-mode .founder-section, body.dark-mode .contact-section { background: #1e1e1e !important; border: 1px solid #333 !important; }
+        body.dark-mode .founder-info h3, body.dark-mode .contact-body { color: white !important; }
+        body.dark-mode .founder-message, body.dark-mode .contact-item { color: #ccc !important; }
 
         /* Navbar Style */
         .navbar { 
@@ -98,7 +98,6 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             transition: 0.3s;
         }
-        .btn:hover { transform: scale(1.05); }
         .btn-blue { background: #2196F3; }
 
         /* FOUNDER BOX DESIGN */
@@ -129,6 +128,34 @@
             text-align: justify;
             padding: 0 20px;
         }
+
+        /* CONTACT US SECTION DESIGN */
+        .contact-section {
+            max-width: 800px;
+            margin: 30px auto;
+            background: #fff;
+            border: 1px solid #d32f2f;
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: left;
+        }
+        .contact-header {
+            background: #b71c1c;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .contact-body { padding: 20px; }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 17px;
+            color: #333;
+        }
+        .contact-item b { margin-right: 10px; }
 
         footer { margin-top: 100px; color: #777; font-size: 14px; padding-bottom: 20px; }
     </style>
@@ -175,6 +202,20 @@
                     Padhte rahiye, badhte rahiye!<br>
                     <b>— Aapka Dost, Ishwar Beniwal</b>
                 </p>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <div class="contact-header">Contact Us</div>
+            <div class="contact-body">
+                <div class="contact-item">
+                    <b>📸 Instagram:</b> 
+                    <a href="https://instagram.com/ishwar_beniwal_ib" style="text-decoration:none; color:inherit;">ishwar_beniwal_ib</a>
+                </div>
+                <div class="contact-item">
+                    <b>📧 Gmail:</b> 
+                    <a href="mailto:ishwarbeniwal770@gmail.com" style="text-decoration:none; color:inherit;">ishwarbeniwal770@gmail.com</a>
+                </div>
             </div>
         </div>
     </div>
