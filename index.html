@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Study Hub - Notes, Quiz, Lectures & More</title>
+    <title>Isher Education - Study Hub</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,133 +12,177 @@
             background-color: #f4f4f9;
             color: #333;
         }
+        /* Navbar Style */
+        .navbar {
+            background: #2196F3;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .menu-btn {
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        /* Header Section */
         header {
             background-color: #4a90e2;
             color: white;
-            padding: 15px 20px;
+            padding: 40px 20px;
             text-align: center;
         }
-        nav {
-            background-color: #333;
-            overflow: hidden;
-        }
-        nav a {
-            float: left;
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 17px;
-        }
-        nav a:hover {
-            background-color: #ddd;
-            color: black;
-        }
+        /* Main Container */
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 20px auto;
             padding: 20px;
-            background: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            border-radius: 8px;
         }
-        h1, h2 {
-            color: #4a90e2;
-        }
-        .welcome {
+        .welcome-box {
             text-align: center;
-            padding: 40px 20px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
         }
+        /* Button & Card Styles */
         .cards {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
-            justify-content: center;
         }
         .card {
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            width: 300px;
+            background: white;
             padding: 20px;
+            border-radius: 10px;
             text-align: center;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: 0.3s;
         }
         .card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
         }
-        .card a {
+        .btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 12px 25px;
+            background: #4CAF50;
+            color: white;
             text-decoration: none;
-            color: #4a90e2;
+            border-radius: 5px;
             font-weight: bold;
         }
-        footer {
+        /* Sidebar */
+        #sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
             background-color: #333;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+        #sidebar a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+        #sidebar a:hover {
+            background: #575757;
+        }
+        .closebtn {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-size: 36px;
+            cursor: pointer;
+        }
+        footer {
+            background: #333;
             color: white;
             text-align: center;
-            padding: 10px;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
+            padding: 20px;
+            margin-top: 50px;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Welcome to Study Hub</h1>
-        <p>Your one-stop place for Notes, Quizzes, Lectures & More!</p>
-    </header>
-
-    <nav>
+    <div id="sidebar">
+        <span class="closebtn" onclick="closeNav()">&times;</span>
         <a href="index.html">Home</a>
         <a href="subjects.html">Subjects</a>
         <a href="notes.html">Notes</a>
         <a href="lecture.html">Lectures</a>
         <a href="quiz.html">Quiz</a>
-        <a href="study.html">Study Material</a>
-        <a href="chapter.html">Chapters</a>
-        <a href="botany.html">Botany</a>
         <a href="feedback.html">Feedback</a>
-        <!-- Agar profile chahiye to rakh sakta hai, warna hata de -->
-        <!-- <a href="profile.html">Profile</a> -->
-    </nav>
+    </div>
+
+    <div class="navbar">
+        <div class="menu-btn" onclick="openNav()">☰</div>
+        <div class="logo">Isher Education</div>
+        <div class="profile"><a href="profile.html" style="color:white; text-decoration:none;">👤</a></div>
+    </div>
+
+    <header>
+        <h1>Welcome to Study Hub 🚀</h1>
+        <p>Your one-stop place for Notes, Quizzes, & Lectures!</p>
+    </header>
 
     <div class="container">
-        <div class="welcome">
-            <h2>Hi there! Start Learning Today 🚀</h2>
-            <p>Choose any section from above or below to get started. All content is free and open for everyone – no login required!</p>
+        <div class="welcome-box">
+            <h2>Hi there! Start Learning Today</h2>
+            <p>All content is free and open for everyone – No login required!</p>
+            <a href="study.html" class="btn">My Learning</a>
+            <a href="subjects.html" class="btn" style="background:#2196F3;">Explore NCERT</a>
         </div>
 
         <div class="cards">
             <div class="card">
                 <h3>Subjects</h3>
-                <p>Explore all subjects with detailed notes and resources.</p>
-                <a href="subjects.html">Go to Subjects →</a>
+                <p>Detailed notes and resources for all subjects.</p>
+                <a href="subjects.html" style="color:#2196F3; font-weight:bold;">Explore →</a>
             </div>
             <div class="card">
                 <h3>Quiz Time</h3>
                 <p>Test your knowledge with fun quizzes.</p>
-                <a href="quiz.html">Start Quiz →</a>
+                <a href="quiz.html" style="color:#2196F3; font-weight:bold;">Start Quiz →</a>
             </div>
             <div class="card">
                 <h3>Notes & Lectures</h3>
-                <p>Download or read important notes and video lectures.</p>
-                <a href="notes.html">View Notes</a> | <a href="lecture.html">Lectures</a>
-            </div>
-            <div class="card">
-                <h3>Botany Special</h3>
-                <p>Detailed botany chapters and resources.</p>
-                <a href="botany.html">Explore Botany →</a>
+                <p>Download important notes and watch video lectures.</p>
+                <a href="notes.html" style="color:#2196F3; font-weight:bold;">View All →</a>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2025 Study Hub | Made with ❤️ by isher10</p>
+        <p>Instagram: ishwar_beniwal_ib | Email: ishwarbeniwal770@gmail.com</p>
+        <p>&copy; 2025 Isher Education | Made with ❤️</p>
     </footer>
+
+    <script>
+        function openNav() {
+            document.getElementById("sidebar").style.width = "250px";
+        }
+        function closeNav() {
+            document.getElementById("sidebar").style.width = "0";
+        }
+    </script>
 
 </body>
 </html>
