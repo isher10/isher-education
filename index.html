@@ -7,7 +7,7 @@
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #f4f4f9; text-align: center; overflow-x: hidden; transition: background 0.3s, color 0.3s; }
         
-        /* DARK MODE CSS ADDED HERE */
+        /* DARK MODE CSS */
         body.dark-mode { background-color: #121212 !important; color: #ffffff !important; }
         body.dark-mode .navbar { background-color: #1f1f1f !important; }
         body.dark-mode header { background-color: #222 !important; }
@@ -15,6 +15,9 @@
         body.dark-mode .sidebar a { color: white !important; border-bottom: 1px solid #333 !important; }
         body.dark-mode .container, body.dark-mode .welcome-box { background-color: #121212 !important; color: white !important; }
         body.dark-mode footer { color: #bbb !important; }
+        body.dark-mode .founder-section { background: #1e1e1e !important; border: 1px solid #333 !important; }
+        body.dark-mode .founder-info h3 { color: white !important; }
+        body.dark-mode .founder-message { color: #ccc !important; }
 
         /* Navbar Style */
         .navbar { 
@@ -97,6 +100,36 @@
         }
         .btn:hover { transform: scale(1.05); }
         .btn-blue { background: #2196F3; }
+
+        /* FOUNDER BOX DESIGN */
+        .founder-section {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .founder-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #2196F3;
+            margin-bottom: 15px;
+        }
+        .founder-info h3 { margin: 5px 0; font-size: 24px; color: #333; }
+        .founder-info p { margin: 2px 0; color: #777; font-size: 16px; }
+        .founder-message {
+            margin-top: 25px;
+            line-height: 1.8;
+            color: #444;
+            font-size: 17px;
+            text-align: justify;
+            padding: 0 20px;
+        }
+
         footer { margin-top: 100px; color: #777; font-size: 14px; padding-bottom: 20px; }
     </style>
 </head>
@@ -125,6 +158,25 @@
     <div class="container">
         <a href="study.html" class="btn">My Learning</a>
         <a href="subjects.html" class="btn btn-blue">Explore NCERT</a>
+
+        <div class="founder-section">
+            <img src="ishwar.pdf" alt="Ishwar Beniwal" class="founder-photo">
+            <div class="founder-info">
+                <h3>Ishwar Beniwal</h3>
+                <p>Nagaur, Rajasthan</p>
+            </div>
+            <div class="founder-message">
+                <p>
+                    <b>Namaste Dosto!</b><br><br>
+                    Mera naam Ishwar Beniwal hai aur main Rajasthan ke Nagaur zile ka rehne wala hoon. Isher Education ko banane ka mera maksad bahut saaf hai – har us vidyarthi tak quality education pahunchana jo bade-bade coaching institutes ki fees afford nahi kar sakte. Aaj ke daur mein internet ek aisi shakti hai jiska sahi upyog karke hum apne sapno ko sach kar sakte hain.<br><br>
+                    Maine dekha hai ki bahut se students ko sahi waqt par acche notes aur guidance nahi mil paati, isi samasya ko door karne ke liye maine ye platform taiyar kiya hai. Yahan aapko Botany, Zoology, aur NCERT ke saare zaroori topics par detail mein notes milenge, saath hi aap apni taiyari ko check karne ke liye quizzes bhi de sakte hain. <br><br>
+                    Education sirf exams pass karne ke liye nahi, balki samajh badhane ke liye honi chahiye. Main chahta hoon ki aap yahan se sirf padhe nahi, balki seekhen. Rajasthan ki is mitti ne humesha se humein mehnat aur imandari ka rasta dikhaya hai, aur wahi seekh main is website ke zariye aap sab tak pahunchana chahta hoon. <br><br>
+                    Aap sabhi ki safal yatra (success journey) mein mera ye chhota sa yogdan rahega, yahi mere liye sabse badi uplabdhi hogi. Agar aapko koi bhi samasya aaye ya aap koi suggestion dena chahen, toh beshijhak feedback section mein bata sakte hain. <br><br>
+                    Padhte rahiye, badhte rahiye!<br>
+                    <b>— Aapka Dost, Ishwar Beniwal</b>
+                </p>
+            </div>
+        </div>
     </div>
 
     <footer>
@@ -133,7 +185,6 @@
     </footer>
 
     <script>
-        // DARK MODE LOGIC ADDED HERE
         function applySavedTheme() {
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
