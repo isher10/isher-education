@@ -95,14 +95,107 @@
 
         <button class="view-btn" onclick="openNCERTPDF()">View PDF</button>
     </div>
+<script>
+    // Dark Mode Check
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+    }
 
-    <script>
-        // Check for Dark Mode
-        if (localStorage.getItem('theme') === 'dark') {
-            document.body.classList.add('dark-mode');
+    // NCERT Data (Class -> Subject -> Chapters)
+    const ncertData = {
+        "11": {
+            "Biology": [
+                "The Living World", "Biological Classification", "Plant Kingdom", 
+                "Animal Kingdom", "Morphology of Flowering Plants"
+            ],
+            "Physics Part 1": [
+                "Units and Measurements", "Motion in a Straight Line", "Motion in a Plane", 
+                "Laws of Motion", "Work, Energy and Power"
+            ],
+            "Physics Part 2": [
+                "Mechanical Properties of Solids", "Mechanical Properties of Fluids", 
+                "Thermal Properties of Matter", "Thermodynamics", "Kinetic Theory"
+            ]
+        },
+        "12": {
+            "Biology": [
+                "Sexual Reproduction in Flowering Plants", "Human Reproduction", 
+                "Reproductive Health", "Principles of Inheritance and Variation"
+            ],
+            "Physics Part 1": [
+                "Electric Charges and Fields", "Electrostatic Potential and Capacitance", 
+                "Current Electricity", "Moving Charges and Magnetism"
+            ],
+            "Physics Part 2": [
+                "Ray Optics and Optical Instruments", "Wave Optics", 
+                "Dual Nature of Radiation and Matter", "Atoms", "Nuclei"
+            ]
+        }
+    };
+
+    const classSelect = document.getElementById('classSelect');
+    const subjectSelect = document.getElementById('subjectSelect');
+    const chapterSelect = document.getElementById('chapterSelect');
+
+    // Jab Class badle toh Subjects update hon
+    classSelect.addEventListener('change', function() {
+        const selectedClass = this.value;
+        subjectSelect.innerHTML = '<option value="">-- Choose Subject --</option>';
+        chapterSelect.innerHTML = '<option value="">-- Choose Chapter --</option>';
+
+        if (selectedClass && ncertData[selectedClass]) {
+            Object.keys(ncertData[selectedClass]).forEach(subject => {
+                let option = new Option(subject, subject);
+                subjectSelect.add(option);
+            });
+        }
+    });
+
+    // Jab Subject badle toh Chapters update hon
+    subjectSelect.addEventListener('change', function() {
+        const selectedClass = classSelect.value;
+        const selectedSubject = this.value;
+        chapterSelect.innerHTML = '<option value="">-- Choose Chapter --</option>';
+
+        if (selectedClass && selectedSubject && ncertData[selectedClass][selectedSubject]) {
+            ncertData[selectedClass][selectedSubject].forEach((chapter, index) => {
+                // Chapter Number (1, 2, 3...) ke saath naam
+                let option = new Option(`Chapter ${index + 1}: ${chapter}`, index + 1);
+                chapterSelect.add(option);
+            });
+        }
+    });
+
+    // View PDF Function (NCERT ki official links ke liye)
+    function openNCERTPDF() {
+        const medium = document.getElementById('medium').value;
+        const cls = classSelect.value;
+        const sub = subjectSelect.value;
+        const ch = chapterSelect.value;
+
+        if (!medium || !cls || !sub || !ch) {
+            alert("Bhai, pehle saare options chun lo!");
+            return;
         }
 
-        // --- Abhi yahan logic baaki hai jo hum Step 2 mein karenge ---
-    </script>
+        // NCERT URL Structure Logic (Example)
+        // Yahan hum NCERT ke short-codes use karte hain jaise 'kebo1' (Class 11 Bio)
+        let bookCode = "";
+        if(cls == "11") {
+            if(sub == "Biology") bookCode = (medium == "hindi") ? "hlbo1" : "kebo1";
+            if(sub == "Physics Part 1") bookCode = (medium == "hindi") ? "hlph1" : "keph1";
+        }
+        
+        // Chapter number ko 2 digits me convert karna (01, 02...)
+        let chCode = ch.padStart(2, '0');
+        
+        // Final PDF Link (NCERT Server)
+        const finalLink = `https://ncert.nic.in/textbook/pdf/${bookCode}${chCode}.pdf`;
+        
+        window.open(finalLink, '_blank');
+    }
+</script>
+
+
 </body>
 </html>
