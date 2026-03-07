@@ -1,43 +1,80 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-<title>Study</title>
-
-<style>
-
-body{
-font-family:Arial;
-background:#f2f2f2;
-text-align:center;
-margin:0;
-}
-
-.box{
-background:white;
-width:250px;
-margin:30px auto;
-padding:20px;
-border-radius:10px;
-box-shadow:0px 0px 10px gray;
-font-size:20px;
-cursor:pointer;
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Learning - Isher Education</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background-color: #f4f4f9; }
+        .navbar { background: #2196F3; color: white; padding: 15px; text-align: center; font-weight: bold; }
+        .container { max-width: 1000px; margin: 30px auto; padding: 20px; }
+        h2 { text-align: center; color: #333; }
+        
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+        .card:hover { transform: translateY(-5px); }
+        .card h3 { color: #2196F3; margin-top: 0; }
+        .card p { color: #666; font-size: 14px; }
+        .card a {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #2196F3;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .back-btn { display: block; text-align: center; margin-top: 40px; text-decoration: none; color: #666; }
+    </style>
 </head>
-
 <body>
 
-<h2>Study Section</h2>
+    <div class="navbar">My Learning Area</div>
 
-<a href="subjects.html"><div class="box">Learning</div></a>
+    <div class="container">
+        <h2>Choose What to Study 📚</h2>
 
-<div class="box">Full Test</div>
+        <div class="cards">
+            <div class="card">
+                <h3>Subjects</h3>
+                <p>Explore all subjects with detailed notes and resources.</p>
+                <a href="subjects.html">Go to Subjects</a>
+            </div>
 
-<a href="quiz.html"><div class="box">Quiz</div></a>
+            <div class="card">
+                <h3>Quiz Time</h3>
+                <p>Test your knowledge with fun and interactive quizzes.</p>
+                <a href="quiz.html">Start Quiz</a>
+            </div>
+
+            <div class="card">
+                <h3>Notes & Lectures</h3>
+                <p>Access video lectures and PDF notes easily.</p>
+                <a href="notes.html">View Notes</a>
+            </div>
+
+            <div class="card">
+                <h3>Botany Special</h3>
+                <p>Detailed botany chapters and specialized resources.</p>
+                <a href="botany.html">Explore Botany</a>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-btn">← Back to Home</a>
+    </div>
 
 </body>
-
 </html>
