@@ -5,8 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Isher Education - Home</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #f4f4f9; text-align: center; overflow-x: hidden; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #f4f4f9; text-align: center; overflow-x: hidden; transition: background 0.3s, color 0.3s; }
         
+        /* DARK MODE CSS ADDED HERE */
+        body.dark-mode { background-color: #121212 !important; color: #ffffff !important; }
+        body.dark-mode .navbar { background-color: #1f1f1f !important; }
+        body.dark-mode header { background-color: #222 !important; }
+        body.dark-mode .sidebar { background: #1e1e1e !important; color: white !important; }
+        body.dark-mode .sidebar a { color: white !important; border-bottom: 1px solid #333 !important; }
+        body.dark-mode .container, body.dark-mode .welcome-box { background-color: #121212 !important; color: white !important; }
+        body.dark-mode footer { color: #bbb !important; }
+
         /* Navbar Style */
         .navbar { 
             background: #2196F3; 
@@ -24,14 +33,14 @@
         /* Slide-out Menu (Sidebar) */
         .sidebar {
             height: 100%;
-            width: 0; /* Shuruat mein band rahega */
+            width: 0;
             position: fixed;
             z-index: 1000;
             top: 0;
             left: 0;
             background-color: #ffffff;
             overflow-x: hidden;
-            transition: 0.4s; /* Sliding speed */
+            transition: 0.4s;
             padding-top: 60px;
             box-shadow: 5px 0 15px rgba(0,0,0,0.2);
             text-align: left;
@@ -58,7 +67,6 @@
             color: #888;
         }
 
-        /* Overlay background when menu is open */
         .overlay {
             display: none;
             position: fixed;
@@ -125,8 +133,18 @@
     </footer>
 
     <script>
+        // DARK MODE LOGIC ADDED HERE
+        function applySavedTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            } else {
+                document.body.classList.remove('dark-mode');
+            }
+        }
+        applySavedTheme();
+
         function openMenu() {
-            // Mobile par 70% aur desktop par 300px width rakhega
             if(window.innerWidth < 600) {
                 document.getElementById("mySidebar").style.width = "70%";
             } else {
