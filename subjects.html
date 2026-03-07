@@ -1,43 +1,108 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-<title>Subjects</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCERT Solutions - Isher Education</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; background-color: #f4f4f9; text-align: center; transition: 0.3s; }
+        
+        /* Dark Mode */
+        body.dark-mode { background-color: #121212; color: white; }
+        body.dark-mode .filter-container { background: #1e1e1e; border: 1px solid #333; }
+        body.dark-mode select { background: #333; color: white; border-color: #444; }
 
-<style>
+        .header { display: flex; align-items: center; margin-bottom: 20px; }
+        .back-btn { text-decoration: none; font-size: 24px; margin-right: 15px; color: #2196F3; font-weight: bold; }
 
-body{
-font-family:Arial;
-background:#f2f2f2;
-text-align:center;
-}
+        .filter-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
 
-.subject{
-background:white;
-width:250px;
-margin:20px auto;
-padding:20px;
-border-radius:10px;
-box-shadow:0px 0px 10px gray;
-font-size:20px;
-cursor:pointer;
-}
+        .filter-group { margin-bottom: 20px; text-align: left; }
+        label { display: block; margin-bottom: 8px; font-weight: bold; color: #555; }
+        body.dark-mode label { color: #bbb; }
 
-</style>
+        select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            outline: none;
+        }
 
+        .view-btn {
+            width: 100%;
+            padding: 15px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+        .view-btn:hover { background: #45a049; }
+    </style>
 </head>
-
 <body>
 
-<h2>Select Subject</h2>
+    <div class="header">
+        <a href="index.html" class="back-btn">←</a>
+        <h2>Explore NCERT</h2>
+    </div>
 
-<a href="botany.html"><div class="subject">Botany</div></a>
-<div class="subject">Zoology</div>
+    <div class="filter-container">
+        <div class="filter-group">
+            <label>Select Medium</label>
+            <select id="medium">
+                <option value="">-- Choose Medium --</option>
+                <option value="hindi">Hindi (हिंदी)</option>
+                <option value="english">English</option>
+            </select>
+        </div>
 
-<div class="subject">Chemistry</div>
+        <div class="filter-group">
+            <label>Select Class</label>
+            <select id="classSelect">
+                <option value="">-- Choose Class --</option>
+                <option value="11">Class 11th</option>
+                <option value="12">Class 12th</option>
+            </select>
+        </div>
 
-<div class="subject">Physics</div>
+        <div class="filter-group">
+            <label>Select Subject</label>
+            <select id="subjectSelect">
+                <option value="">-- Choose Subject --</option>
+            </select>
+        </div>
 
+        <div class="filter-group">
+            <label>Select Chapter</label>
+            <select id="chapterSelect">
+                <option value="">-- Choose Chapter --</option>
+            </select>
+        </div>
+
+        <button class="view-btn" onclick="openNCERTPDF()">View PDF</button>
+    </div>
+
+    <script>
+        // Check for Dark Mode
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+
+        // --- Abhi yahan logic baaki hai jo hum Step 2 mein karenge ---
+    </script>
 </body>
-
 </html>
