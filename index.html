@@ -3,186 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Isher Education - Study Hub</title>
+    <title>Isher Education - Home</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
-        }
-        /* Navbar Style */
-        .navbar {
-            background: #2196F3;
-            color: white;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .menu-btn {
-            font-size: 24px;
-            cursor: pointer;
-        }
-        .logo {
-            font-size: 20px;
-            font-weight: bold;
-        }
-        /* Header Section */
-        header {
-            background-color: #4a90e2;
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-        }
-        /* Main Container */
-        .container {
-            max-width: 1100px;
+        body { font-family: Arial, sans-serif; margin: 0; background-color: #f4f4f9; text-align: center; }
+        .navbar { background: #2196F3; color: white; padding: 15px; font-weight: bold; font-size: 20px; }
+        header { background-color: #4a90e2; color: white; padding: 60px 20px; }
+        .container { padding: 50px 20px; }
+        .btn {
+            display: block;
+            width: 250px;
             margin: 20px auto;
             padding: 20px;
-        }
-        .welcome-box {
-            text-align: center;
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
-        }
-        /* Button & Card Styles */
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        .card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: 0.3s;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-        }
-        .btn {
-            display: inline-block;
-            margin: 10px;
-            padding: 12px 25px;
             background: #4CAF50;
             color: white;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 10px;
+            font-size: 20px;
             font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        /* Sidebar */
-        #sidebar {
-            height: 100%;
-            width: 0;
-            position: fixed;
-            z-index: 2000;
-            top: 0;
-            left: 0;
-            background-color: #333;
-            overflow-x: hidden;
-            transition: 0.5s;
-            padding-top: 60px;
-        }
-        #sidebar a {
-            padding: 15px 25px;
-            text-decoration: none;
-            font-size: 18px;
-            color: white;
-            display: block;
-            transition: 0.3s;
-        }
-        #sidebar a:hover {
-            background: #575757;
-        }
-        .closebtn {
-            position: absolute;
-            top: 10px;
-            right: 25px;
-            font-size: 36px;
-            cursor: pointer;
-        }
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 50px;
-        }
+        .btn-blue { background: #2196F3; }
+        footer { margin-top: 100px; color: #777; font-size: 14px; }
     </style>
 </head>
 <body>
 
-    <div id="sidebar">
-        <span class="closebtn" onclick="closeNav()">&times;</span>
-        <a href="index.html">Home</a>
-        <a href="subjects.html">Subjects</a>
-        <a href="notes.html">Notes</a>
-        <a href="lecture.html">Lectures</a>
-        <a href="quiz.html">Quiz</a>
-        <a href="feedback.html">Feedback</a>
-    </div>
-
-    <div class="navbar">
-        <div class="menu-btn" onclick="openNav()">☰</div>
-        <div class="logo">Isher Education</div>
-        <div class="profile"><a href="profile.html" style="color:white; text-decoration:none;">👤</a></div>
-    </div>
+    <div class="navbar">Isher Education</div>
 
     <header>
         <h1>Welcome to Study Hub 🚀</h1>
-        <p>Your one-stop place for Notes, Quizzes, & Lectures!</p>
+        <p>Start your learning journey today.</p>
     </header>
 
     <div class="container">
-        <div class="welcome-box">
-            <h2>Hi there! Start Learning Today</h2>
-            <p>All content is free and open for everyone – No login required!</p>
-            <a href="study.html" class="btn">My Learning</a>
-            <a href="subjects.html" class="btn" style="background:#2196F3;">Explore NCERT</a>
-        </div>
-
-        <div class="cards">
-            <div class="card">
-                <h3>Subjects</h3>
-                <p>Detailed notes and resources for all subjects.</p>
-                <a href="subjects.html" style="color:#2196F3; font-weight:bold;">Explore →</a>
-            </div>
-            <div class="card">
-                <h3>Quiz Time</h3>
-                <p>Test your knowledge with fun quizzes.</p>
-                <a href="quiz.html" style="color:#2196F3; font-weight:bold;">Start Quiz →</a>
-            </div>
-            <div class="card">
-                <h3>Notes & Lectures</h3>
-                <p>Download important notes and watch video lectures.</p>
-                <a href="notes.html" style="color:#2196F3; font-weight:bold;">View All →</a>
-            </div>
-        </div>
+        <a href="study.html" class="btn">My Learning</a>
+        
+        <a href="subjects.html" class="btn btn-blue">Explore NCERT</a>
     </div>
 
     <footer>
-        <p>Instagram: ishwar_beniwal_ib | Email: ishwarbeniwal770@gmail.com</p>
-        <p>&copy; 2025 Isher Education | Made with ❤️</p>
+        <p>Instagram: ishwar_beniwal_ib</p>
+        <p>&copy; 2025 Isher Education</p>
     </footer>
-
-    <script>
-        function openNav() {
-            document.getElementById("sidebar").style.width = "250px";
-        }
-        function closeNav() {
-            document.getElementById("sidebar").style.width = "0";
-        }
-    </script>
 
 </body>
 </html>
