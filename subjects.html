@@ -1,103 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCERT Solutions - Isher Education</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; background-color: #f4f4f9; text-align: center; transition: 0.3s; }
+        
+        /* Dark Mode */
+        body.dark-mode { background-color: #121212; color: white; }
+        body.dark-mode .filter-container { background: #1e1e1e; border: 1px solid #333; }
+        body.dark-mode select { background: #333; color: white; border-color: #444; }
+
+        .header { display: flex; align-items: center; margin-bottom: 20px; }
+        .back-btn { text-decoration: none; font-size: 24px; margin-right: 15px; color: #2196F3; font-weight: bold; }
+
+        .filter-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .filter-group { margin-bottom: 20px; text-align: left; }
+        label { display: block; margin-bottom: 8px; font-weight: bold; color: #555; }
+        body.dark-mode label { color: #bbb; }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .view-btn {
+            width: 100%;
+            padding: 15px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+        .view-btn:hover { background: #45a049; }
+        
+        .tip { font-size: 12px; color: #888; margin-top: 15px; line-height: 1.4; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <a href="index.html" class="back-btn">←</a>
+        <h2>Explore NCERT</h2>
+    </div>
+
+    <div class="filter-container">
+        <div class="filter-group">
+            <label>Select Medium</label>
+            <select id="medium">
+                <option value="">-- Choose Medium --</option>
+                <option value="hindi">Hindi (हिंदी)</option>
+                <option value="english">English</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label>Select Class</label>
+            <select id="classSelect">
+                <option value="">-- Choose Class --</option>
+                <option value="11">Class 11th</option>
+                <option value="12">Class 12th</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label>Select Subject</label>
+            <select id="subjectSelect">
+                <option value="">-- Choose Subject --</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label>Select Chapter</label>
+            <select id="chapterSelect">
+                <option value="">-- Choose Chapter --</option>
+            </select>
+        </div>
+
+        <button class="view-btn" onclick="openNCERTPDF()">View PDF</button>
+        <p class="tip"><b>Note:</b> Agar blank page aaye, toh ek baar refresh karein ya NCERT ki site par 'Allow' karein.</p>
+    </div>
+
 <script>
-    // Dark Mode Check
     if (localStorage.getItem('theme') === 'dark') {
         document.body.classList.add('dark-mode');
     }
 
-    // NCERT Codes Dictionary (Official PDF Link ke liye)
-    // format: [English_Code, Hindi_Code]
-    const bookCodes = {
+    const ncertCodes = {
         "11": {
-            "Biology": ["kebo1", "hlbo1"],
-            "Physics Part 1": ["keph1", "hlph1"],
-            "Physics Part 2": ["keph2", "hlph2"],
-            "Chemistry Part 1": ["kech1", "hlch1"],
-            "Chemistry Part 2": ["kech2", "hlch2"],
-            "Mathematics": ["kemh1", "hlmh1"]
+            "Biology": { eng: "kebo1", hin: "hlbo1" },
+            "Physics Part 1": { eng: "keph1", hin: "hlph1" },
+            "Physics Part 2": { eng: "keph2", hin: "hlph2" },
+            "Chemistry Part 1": { eng: "kech1", hin: "hlch1" },
+            "Chemistry Part 2": { eng: "kech2", hin: "hlch2" }
         },
         "12": {
-            "Biology": ["lebo1", "llbo1"],
-            "Physics Part 1": ["leph1", "llph1"],
-            "Physics Part 2": ["leph2", "llph2"],
-            "Chemistry Part 1": ["lech1", "llch1"],
-            "Chemistry Part 2": ["lech2", "llch2"],
-            "Mathematics Part 1": ["lemh1", "llmh1"],
-            "Mathematics Part 2": ["lemh2", "llmh2"]
+            "Biology": { eng: "lebo1", hin: "llbo1" },
+            "Physics Part 1": { eng: "leph1", hin: "llph1" },
+            "Physics Part 2": { eng: "leph2", hin: "llph2" },
+            "Chemistry Part 1": { eng: "lech1", hin: "llch1" },
+            "Chemistry Part 2": { eng: "lech2", hin: "llch2" }
         }
     };
 
-    // Chapter Names Data
-    const chapterData = {
+    const chapterNames = {
         "11": {
             "Biology": ["The Living World", "Biological Classification", "Plant Kingdom", "Animal Kingdom", "Morphology of Flowering Plants", "Anatomy of Flowering Plants", "Structural Organisation in Animals", "Cell: The Unit of Life", "Biomolecules", "Cell Cycle and Cell Division", "Photosynthesis in Higher Plants", "Respiration in Plants", "Plant Growth and Development", "Breathing and Exchange of Gases", "Body Fluids and Circulation", "Excretory Products and their Elimination", "Locomotion and Movement", "Neural Control and Coordination", "Chemical Coordination and Integration"],
             "Physics Part 1": ["Units and Measurements", "Motion in a Straight Line", "Motion in a Plane", "Laws of Motion", "Work, Energy and Power", "System of Particles and Rotational Motion", "Gravitation"],
-            "Physics Part 2": ["Mechanical Properties of Solids", "Mechanical Properties of Fluids", "Thermal Properties of Matter", "Thermodynamics", "Kinetic Theory", "Oscillations", "Waves"]
-            // Chemistry aur Maths ke chapters bhi isi tarah add ho jayenge
+            "Physics Part 2": ["Mechanical Properties of Solids", "Mechanical Properties of Fluids", "Thermal Properties of Matter", "Thermodynamics", "Kinetic Theory", "Oscillations", "Waves"],
+            "Chemistry Part 1": ["Some Basic Concepts of Chemistry", "Structure of Atom", "Classification of Elements and Periodicity in Properties", "Chemical Bonding and Molecular Structure", "Thermodynamics", "Equilibrium"],
+            "Chemistry Part 2": ["Redox Reactions", "Organic Chemistry – Some Basic Principles and Techniques", "Hydrocarbons"]
         },
         "12": {
             "Biology": ["Sexual Reproduction in Flowering Plants", "Human Reproduction", "Reproductive Health", "Principles of Inheritance and Variation", "Molecular Basis of Inheritance", "Evolution", "Human Health and Disease", "Microbes in Human Welfare", "Biotechnology: Principles and Processes", "Biotechnology and its Applications", "Organisms and Populations", "Ecosystem", "Biodiversity and Conservation"],
             "Physics Part 1": ["Electric Charges and Fields", "Electrostatic Potential and Capacitance", "Current Electricity", "Moving Charges and Magnetism", "Magnetism and Matter", "Electromagnetic Induction", "Alternating Current", "Electromagnetic Waves"],
-            "Physics Part 2": ["Ray Optics and Optical Instruments", "Wave Optics", "Dual Nature of Radiation and Matter", "Atoms", "Nuclei", "Semiconductor Electronics"]
+            "Physics Part 2": ["Ray Optics and Optical Instruments", "Wave Optics", "Dual Nature of Radiation and Matter", "Atoms", "Nuclei", "Semiconductor Electronics"],
+            "Chemistry Part 1": ["Solutions", "Electrochemistry", "Chemical Kinetics", "The d-and f-Block Elements", "Coordination Compounds"],
+            "Chemistry Part 2": ["Haloalkanes and Haloarenes", "Alcohols, Phenols and Ethers", "Aldehydes, Ketones and Carboxylic Acids", "Amines", "Biomolecules"]
         }
     };
 
-    const medium = document.getElementById('medium');
     const classSelect = document.getElementById('classSelect');
     const subjectSelect = document.getElementById('subjectSelect');
     const chapterSelect = document.getElementById('chapterSelect');
 
-    // 1. Class change hone par Subjects dikhao
     classSelect.addEventListener('change', function() {
-        const cls = this.value;
+        const selectedClass = this.value;
         subjectSelect.innerHTML = '<option value="">-- Choose Subject --</option>';
         chapterSelect.innerHTML = '<option value="">-- Choose Chapter --</option>';
-        
-        if (cls && bookCodes[cls]) {
-            Object.keys(bookCodes[cls]).forEach(sub => {
-                subjectSelect.add(new Option(sub, sub));
+        if (selectedClass && ncertCodes[selectedClass]) {
+            Object.keys(ncertCodes[selectedClass]).forEach(subject => {
+                subjectSelect.add(new Option(subject, subject));
             });
         }
     });
 
-    // 2. Subject change hone par Chapters dikhao
     subjectSelect.addEventListener('change', function() {
-        const cls = classSelect.value;
-        const sub = this.value;
+        const selectedClass = classSelect.value;
+        const selectedSubject = this.value;
         chapterSelect.innerHTML = '<option value="">-- Choose Chapter --</option>';
-
-        if (cls && sub && chapterData[cls][sub]) {
-            chapterData[cls][sub].forEach((name, index) => {
-                chapterSelect.add(new Option(`Ch ${index + 1}: ${name}`, index + 1));
+        if (selectedClass && selectedSubject && chapterNames[selectedClass][selectedSubject]) {
+            chapterNames[selectedClass][selectedSubject].forEach((chapter, index) => {
+                chapterSelect.add(new Option(`Chapter ${index + 1}: ${chapter}`, index + 1));
             });
-        } else {
-            // Agar chapter list nahi hai toh bas number dikhao
-            for(let i=1; i<=15; i++) {
-                chapterSelect.add(new Option(`Chapter ${i}`, i));
-            }
         }
     });
 
-    // 3. Final PDF Link Open Karo
     function openNCERTPDF() {
-        const med = medium.value;
+        const medium = document.getElementById('medium').value;
         const cls = classSelect.value;
         const sub = subjectSelect.value;
         const ch = chapterSelect.value;
 
-        if (!med || !cls || !sub || !ch) {
-            alert("Bhai, saare options toh select karo!");
+        if (!medium || !cls || !sub || !ch) {
+            alert("Bhai, pehle saare options chun lo!");
             return;
         }
 
-        // Sahi code uthao (English = index 0, Hindi = index 1)
-        const langIdx = (med === "hindi") ? 1 : 0;
-        const code = bookCodes[cls][sub][langIdx];
+        let bookCode = (medium === "hindi") ? ncertCodes[cls][sub].hin : ncertCodes[cls][sub].eng;
+        let chCode = ch.toString().padStart(2, '0');
         
-        // Chapter number ko 2 digit banao (1 -> 01)
-        const chNum = ch.toString().padStart(2, '0');
-
-        // NCERT URL
-        const url = `https://ncert.nic.in/textbook/pdf/${code}${chNum}.pdf`;
-        window.open(url, '_blank');
+        // Final PDF URL
+        const pdfUrl = `https://ncert.nic.in/textbook/pdf/${bookCode}${chCode}.pdf`;
+        
+        // Naye tab mein kholne ke liye
+        window.open(pdfUrl, '_blank');
     }
 </script>
+</body>
+</html>
