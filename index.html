@@ -180,9 +180,11 @@
         document.getElementById("overlay").style.display = "none";
     }
 
-    // Register Service Worker
+    // Register Service Worker with error handling
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js');
+        navigator.serviceWorker.register('sw.js')
+        .then(() => console.log("Service Worker Registered"))
+        .catch(err => console.log("SW Registration Failed:", err));
     }
 
     // PWA Install Button
@@ -197,7 +199,12 @@
 
     installBtn.addEventListener('click', async () => {
         installBtn.style.display = 'none';
-        deferredPrompt.prompt();
+        if(deferredPrompt){
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log(`User response: ${outcome}`);
+            deferredPrompt = null;
+        }
     });
 
 </script>
