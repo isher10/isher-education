@@ -1,324 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="google-site-verification" content="O4O1SCRxXh8TZaxyXWazl1Gc3qCtexGHpGTQoXHMAWc" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isher Education - Home</title>
 
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#2196F3">
+    <!-- PWA Manifest & Theme -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2196F3">
 
-<meta name="google-site-verification" content="O4O1SCRxXh8TZaxyXWazl1Gc3qCtexGHpGTQoXHMAWc" />
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-<title>Isher Education - Home</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #f4f4f9; text-align: center; overflow-x: hidden; transition: background 0.3s, color 0.3s; }
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        /* INSTALL BUTTON */
+        #installApp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #ff9800;
+            color: white;
+            border: none;
+            padding: 14px 18px;
+            font-size: 16px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            cursor: pointer;
+            display: none;
+            z-index: 9999;
+        }
+        #installApp:active { transform: scale(0.95); }
 
-<style>
-body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #f4f4f9; text-align: center; overflow-x: hidden; transition: background 0.3s, color 0.3s; }
+        /* DARK MODE CSS */
+        body.dark-mode { background-color: #121212 !important; color: #ffffff !important; }
+        body.dark-mode .navbar { background-color: #1f1f1f !important; }
+        body.dark-mode .sidebar { background: #1e1e1e !important; color: white !important; }
+        body.dark-mode .sidebar a { color: white !important; border-bottom: 1px solid #333 !important; }
+        body.dark-mode .container { background-color: #121212 !important; }
+        body.dark-mode footer { color: #bbb !important; }
+        body.dark-mode .founder-section, body.dark-mode .contact-section { background: #1e1e1e !important; border: 1px solid #333 !important; }
+        body.dark-mode .founder-info h3, body.dark-mode .contact-body { color: white !important; }
+        body.dark-mode .founder-message, body.dark-mode .contact-item { color: #ccc !important; }
 
-/* DOWNLOAD APP BUTTON */
-.install-btn{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#ff9800;
-color:white;
-border:none;
-padding:14px 18px;
-font-size:16px;
-border-radius:10px;
-box-shadow:0 4px 10px rgba(0,0,0,0.2);
-cursor:pointer;
-display:none;
-z-index:9999;
-}
+        /* Navbar Style */
+        .navbar { background: #2196F3; color: white; padding: 15px 20px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .menu-icon { font-size: 28px; cursor: pointer; }
+        .logo { font-size: 20px; font-weight: bold; flex-grow: 1; margin-left: 20px; text-align: left; }
 
-.install-btn:active{
-transform:scale(0.95);
-}
+        /* Slide-out Menu (Sidebar) */
+        .sidebar { height: 100%; width: 0; position: fixed; z-index: 1000; top: 0; left: 0; background-color: #ffffff; overflow-x: hidden; transition: 0.4s; padding-top: 60px; box-shadow: 5px 0 15px rgba(0,0,0,0.2); text-align: left; }
+        .sidebar a { padding: 15px 25px; text-decoration: none; font-size: 18px; color: #333; display: block; border-bottom: 1px solid #eee; transition: 0.3s; }
+        .sidebar a:hover { background-color: #f1f1f1; color: #2196F3; }
+        .sidebar .close-btn { position: absolute; top: 10px; right: 20px; font-size: 36px; cursor: pointer; color: #888; }
+        .overlay { display: none; position: fixed; width: 100%; height: 100%; top: 0; left: 0; background: rgba(0,0,0,0.4); z-index: 999; }
 
-/* DARK MODE CSS */
-body.dark-mode { background-color: #121212 !important; color: #ffffff !important; }
-body.dark-mode .navbar { background-color: #1f1f1f !important; }
-body.dark-mode .sidebar { background: #1e1e1e !important; color: white !important; }
-body.dark-mode .sidebar a { color: white !important; border-bottom: 1px solid #333 !important; }
-body.dark-mode .container { background-color: #121212 !important; }
-body.dark-mode footer { color: #bbb !important; }
-body.dark-mode .founder-section, body.dark-mode .contact-section { background: #1e1e1e !important; border: 1px solid #333 !important; }
-body.dark-mode .founder-info h3, body.dark-mode .contact-body { color: white !important; }
-body.dark-mode .founder-message, body.dark-mode .contact-item { color: #ccc !important; }
+        /* Container & Brand Section */
+        .container { padding: 40px 20px; }
+        .brand-container { display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 40px; text-align: center; }
+        .brand-logo { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 4px solid #2196F3; box-shadow: 0 4px 15px rgba(0,0,0,0.15); margin-bottom: 15px; }
+        .brand-name { font-size: 28px; font-weight: bold; color: #2196F3; margin: 0; letter-spacing: 1px; }
+        body.dark-mode .brand-name { color: #ffffff !important; }
 
-/* Navbar Style */
-.navbar { 
-background: #2196F3; 
-color: white; 
-padding: 15px 20px; 
-display: flex; 
-align-items: center; 
-justify-content: space-between;
-box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
+        /* Buttons Style */
+        .btn { display: block; width: 250px; margin: 20px auto; padding: 20px; background: #4CAF50; color: white; text-decoration: none; border-radius: 12px; font-size: 20px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        .btn:active { transform: scale(0.98); }
+        .btn-blue { background: #2196F3; }
 
-.menu-icon { font-size: 28px; cursor: pointer; }
-.logo { font-size: 20px; font-weight: bold; flex-grow: 1; margin-left: 20px; text-align: left; }
+        /* FOUNDER BOX DESIGN */
+        .founder-section { max-width: 800px; margin: 60px auto; padding: 40px 20px; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; }
+        .founder-photo { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 5px solid #2196F3; margin-bottom: 15px; }
+        .founder-info h3 { margin: 5px 0; font-size: 24px; color: #333; }
+        .founder-info p { margin: 2px 0; color: #777; font-size: 16px; }
+        .founder-message { margin-top: 25px; line-height: 1.8; color: #444; font-size: 17px; text-align: justify; padding: 0 20px; }
 
-/* Sidebar */
-.sidebar {
-height: 100%;
-width: 0;
-position: fixed;
-z-index: 1000;
-top: 0;
-left: 0;
-background-color: #ffffff;
-overflow-x: hidden;
-transition: 0.4s;
-padding-top: 60px;
-box-shadow: 5px 0 15px rgba(0,0,0,0.2);
-text-align: left;
-}
+        /* CONTACT US SECTION */
+        .contact-section { max-width: 800px; margin: 30px auto; background: #fff; border: 1px solid #d32f2f; border-radius: 8px; overflow: hidden; text-align: left; }
+        .contact-header { background: #b71c1c; color: white; padding: 10px; text-align: center; font-weight: bold; font-size: 20px; }
+        .contact-body { padding: 20px; }
+        .contact-item { display: flex; align-items: center; margin-bottom: 15px; font-size: 17px; color: #333; }
+        .contact-item i { margin-right: 15px; font-size: 22px; width: 25px; text-align: center; }
+        .fa-instagram { color: #E1306C; } 
+        .fa-envelope { color: #DB4437; } 
 
-.sidebar a {
-padding: 15px 25px;
-text-decoration: none;
-font-size: 18px;
-color: #333;
-display: block;
-border-bottom: 1px solid #eee;
-transition: 0.3s;
-}
+        footer { margin-top: 100px; color: #777; font-size: 14px; padding-bottom: 20px; }
 
-.sidebar a:hover { background-color: #f1f1f1; color: #2196F3; }
-
-.sidebar .close-btn {
-position: absolute;
-top: 10px;
-right: 20px;
-font-size: 36px;
-cursor: pointer;
-color: #888;
-}
-
-.overlay {
-display: none;
-position: fixed;
-width: 100%;
-height: 100%;
-top: 0;
-left: 0;
-background: rgba(0,0,0,0.4);
-z-index: 999;
-}
-
-.container { padding: 40px 20px; }
-
-.brand-container {
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-margin-bottom: 40px;
-text-align: center;
-}
-
-.brand-logo {
-width: 130px;
-height: 130px;
-border-radius: 50%;
-object-fit: cover;
-border: 4px solid #2196F3;
-box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-margin-bottom: 15px;
-}
-
-.brand-name {
-font-size: 28px;
-font-weight: bold;
-color: #2196F3;
-margin: 0;
-letter-spacing: 1px;
-}
-
-body.dark-mode .brand-name { color: #ffffff !important; }
-
-.btn {
-display: block;
-width: 250px;
-margin: 20px auto;
-padding: 20px;
-background: #4CAF50;
-color: white;
-text-decoration: none;
-border-radius: 12px;
-font-size: 20px;
-font-weight: bold;
-box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-transition: transform 0.2s;
-}
-
-.btn:active { transform: scale(0.98); }
-
-.btn-blue { background: #2196F3; }
-
-/* Founder */
-.founder-section {
-max-width: 800px;
-margin: 60px auto;
-padding: 40px 20px;
-background: white;
-border-radius: 20px;
-box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-text-align: center;
-}
-
-.founder-photo {
-width: 150px;
-height: 150px;
-border-radius: 50%;
-object-fit: cover;
-border: 5px solid #2196F3;
-margin-bottom: 15px;
-}
-
-.founder-info h3 { margin: 5px 0; font-size: 24px; color: #333; }
-
-.founder-info p { margin: 2px 0; color: #777; font-size: 16px; }
-
-.founder-message {
-margin-top: 25px;
-line-height: 1.8;
-color: #444;
-font-size: 17px;
-text-align: justify;
-padding: 0 20px;
-}
-
-.contact-section {
-max-width: 800px;
-margin: 30px auto;
-background: #fff;
-border: 1px solid #d32f2f;
-border-radius: 8px;
-overflow: hidden;
-text-align: left;
-}
-
-.contact-header {
-background: #b71c1c;
-color: white;
-padding: 10px;
-text-align: center;
-font-weight: bold;
-font-size: 20px;
-}
-
-.contact-body { padding: 20px; }
-
-.contact-item {
-display: flex;
-align-items: center;
-margin-bottom: 15px;
-font-size: 17px;
-color: #333;
-}
-
-.contact-item i { margin-right: 15px; font-size: 22px; width: 25px; text-align: center; }
-
-.fa-instagram { color: #E1306C; } 
-.fa-envelope { color: #DB4437; }
-
-footer { margin-top: 100px; color: #777; font-size: 14px; padding-bottom: 20px; }
-</style>
+    </style>
 </head>
-
 <body>
 
-<button id="installApp" class="install-btn">📲 Download App</button>
+<!-- INSTALL BUTTON -->
+<button id="installApp">📲 Download App</button>
 
 <div id="overlay" class="overlay" onclick="closeMenu()"></div>
 
 <div id="mySidebar" class="sidebar">
-<span class="close-btn" onclick="closeMenu()">&times;</span>
-<a href="index.html">🏠 Home</a>
-<a href="study.html">📚 My Learning</a>
-<a href="settings.html">⚙️ Setting</a>
-<a href="about.html">ℹ️ About</a>
+    <span class="close-btn" onclick="closeMenu()">&times;</span>
+    <a href="index.html">🏠 Home</a>
+    <a href="study.html">📚 My Learning</a>
+    <a href="settings.html">⚙️ Setting</a>
+    <a href="about.html">ℹ️ About</a>
 </div>
 
 <div class="navbar">
-<div class="menu-icon" onclick="openMenu()">☰</div>
-<div class="logo">Isher Education</div>
+    <div class="menu-icon" onclick="openMenu()">☰</div>
+    <div class="logo">Isher Education</div>
 </div>
 
 <div class="container">
+    <div class="brand-container">
+        <img src="logo.png" alt="Isher Education Logo" class="brand-logo">
+        <p class="brand-name">Isher Education</p>
+    </div>
 
-<div class="brand-container">
-<img src="logo.png" alt="Isher Education Logo" class="brand-logo">
-<p class="brand-name">Isher Education</p>
-</div>
+    <a href="study.html" class="btn">My Learning</a>
+    <a href="subjects.html" class="btn btn-blue">Explore NCERT</a>
 
-<a href="study.html" class="btn">My Learning</a>
-<a href="subjects.html" class="btn btn-blue">Explore NCERT</a>
+    <div class="founder-section">
+        <img src="ishwar.jpg" alt="Ishwar Beniwal" class="founder-photo">
+        <div class="founder-info">
+            <h3>Ishwar Beniwal</h3>
+            <p>Nagaur, Rajasthan</p>
+        </div>
+        <div class="founder-message">
+            <p>
+                <b>Namaste Dosto!</b><br><br>
+                Hi, my name is Ishwar Beniwal from Nagaur, Rajasthan.
+                I created Isher Education with one simple mission — to provide quality education to students who cannot afford expensive coaching institutes.
+                My goal is that you don’t just study here — you learn and grow.<br><br>
+                <b>— Aapka Dost, Ishwar Beniwal</b>
+            </p>
+        </div>
+    </div>
 
+    <div class="contact-section">
+        <div class="contact-header">Contact Us</div>
+        <div class="contact-body">
+            <div class="contact-item">
+                <i class="fab fa-instagram"></i>
+                <b>Instagram:</b> 
+                <a href="https://instagram.com/ishwar_beniwal_ib" style="text-decoration:none; color:inherit;">ishwar_beniwal_ib</a>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <b>Gmail:</b> 
+                <a href="mailto:ishwarbeniwal770@gmail.com" style="text-decoration:none; color:inherit;">ishwarbeniwal770@gmail.com</a>
+            </div>
+        </div>
+    </div>
 </div>
 
 <footer>
-<p>&copy; 2026 Isher Education</p>
+    <p>&copy; 2026 Isher Education</p>
 </footer>
 
 <script>
+    function applySavedTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+        } else {
+            document.body.classList.remove('dark-mode');
+        }
+    }
+    applySavedTheme();
 
-function applySavedTheme() {
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'dark') {
-document.body.classList.add('dark-mode');
-} else {
-document.body.classList.remove('dark-mode');
-}
-}
-applySavedTheme();
+    function openMenu() {
+        if(window.innerWidth < 600) {
+            document.getElementById("mySidebar").style.width = "75%";
+        } else {
+            document.getElementById("mySidebar").style.width = "300px";
+        }
+        document.getElementById("overlay").style.display = "block";
+    }
 
-function openMenu() {
-if(window.innerWidth < 600) {
-document.getElementById("mySidebar").style.width = "75%";
-} else {
-document.getElementById("mySidebar").style.width = "300px";
-}
-document.getElementById("overlay").style.display = "block";
-}
+    function closeMenu() {
+        document.getElementById("mySidebar").style.width = "0";
+        document.getElementById("overlay").style.display = "none";
+    }
 
-function closeMenu() {
-document.getElementById("mySidebar").style.width = "0";
-document.getElementById("overlay").style.display = "none";
-}
+    // Register Service Worker
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js');
+    }
 
-/* SERVICE WORKER */
+    // PWA Install Button
+    let deferredPrompt;
+    const installBtn = document.getElementById('installApp');
 
-if ('serviceWorker' in navigator) {
-navigator.serviceWorker.register('sw.js');
-}
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        installBtn.style.display = "block";
+    });
 
-/* INSTALL APP SCRIPT */
-
-let deferredPrompt;
-const installBtn = document.getElementById('installApp');
-
-window.addEventListener('beforeinstallprompt', (e) => {
-
-e.preventDefault();
-deferredPrompt = e;
-
-installBtn.style.display = "block";
-
-});
-
-installBtn.addEventListener('click', async () => {
-
-installBtn.style.display = 'none';
-
-deferredPrompt.prompt();
-
-});
+    installBtn.addEventListener('click', async () => {
+        installBtn.style.display = 'none';
+        deferredPrompt.prompt();
+    });
 
 </script>
 
