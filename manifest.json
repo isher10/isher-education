@@ -8,12 +8,12 @@
   "description": "Quality Education for Every Student",
   "icons": [
     {
-      "src": "https://raw.githubusercontent.com/<username>/<repo>/main/logo.png",
+      "src": "https://raw.githubusercontent.com/IshwarBeniwal/isher-education/main/logo.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "https://raw.githubusercontent.com/<username>/<repo>/main/logo.png",
+      "src": "https://raw.githubusercontent.com/IshwarBeniwal/isher-education/main/logo.png",
       "sizes": "512x512",
       "type": "image/png"
     }
